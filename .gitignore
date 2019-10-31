@@ -1,5 +1,6 @@
 *.csv
 *.feather
+*.ftr
 Pipfile.lock
 
 MANIFEST
