@@ -1,6 +1,6 @@
 {
   "features": [
-      "meter_label",
+      "meter",
       "primary_use_label",
       "square_feet",
       "year_built",

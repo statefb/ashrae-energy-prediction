@@ -1,7 +1,7 @@
 from datetime import datetime
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import StratifiedKFold
+from sklearn.model_selection import StratifiedKFold, KFold
 from typing import Callable, List, Optional, Tuple, Union
 
 import sys
@@ -223,5 +223,5 @@ class Runner:
         train_y = self.load_y_train()
         dummy_x = np.zeros(len(train_y))
         # make KFold
-        skf = StratifiedKFold(n_splits=self.n_fold, shuffle=True, random_state=71)
+        skf = KFold(n_splits=self.n_fold, shuffle=True, random_state=71)
         return list(skf.split(dummy_x, train_y))[i_fold]
