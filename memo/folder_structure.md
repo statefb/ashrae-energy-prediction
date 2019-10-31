@@ -12,6 +12,7 @@ https://github.com/ghmagazine/kagglebook/tree/master/ch04-model-interface/code
     - どのモデル？
     - パラメータ？
     - （どのバリデーション）？
+* バリデーション：Runner.load_index_fold内に記載
 
 data
 	raw

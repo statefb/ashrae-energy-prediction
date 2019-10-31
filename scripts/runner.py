@@ -1,18 +1,25 @@
+from datetime import datetime
 import numpy as np
 import pandas as pd
-from model import Model
-from sklearn.metrics import log_loss
+from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import StratifiedKFold
 from typing import Callable, List, Optional, Tuple, Union
 
-from util import Logger, Util
+import sys
+sys.path.append(".")
+
+from .models.base import Model
+from .util import Logger, dump
+from .data.loader import DataLoader
 
 logger = Logger()
 
 
 class Runner:
-
-    def __init__(self, run_name: str, model_cls: Callable[[str, dict], Model], features: List[str], params: dict):
+    """Runner class.
+    """
+    def __init__(self, run_name: str, model_cls: Callable[[str, dict], Model],\
+        features: List[str], target: str, params: dict):
         """コンストラクタ
 
         :param run_name: ランの名前
@@ -20,11 +27,20 @@ class Runner:
         :param features: 特徴量のリスト
         :param params: ハイパーパラメータ
         """
-        self.run_name = run_name
+        self.now = datetime.now().strftime("%y-%m-%d_%H-%M")
+        self.run_name = self.now + "_(" + run_name + ")"  # 現在時刻を先頭に追加
         self.model_cls = model_cls
         self.features = features
+        self.target = target
         self.params = params
         self.n_fold = 4
+
+    @property
+    def loader(self):
+        if hasattr(self, _loader):
+            return self._loader
+        self._loader = DataLoader(self.features, self.target)
+        return self._loader
 
     def train_fold(self, i_fold: Union[int, str]) -> Tuple[
         Model, Optional[np.array], Optional[np.array], Optional[float]]:
@@ -52,7 +68,7 @@ class Runner:
 
             # バリデーションデータへの予測・評価を行う
             va_pred = model.predict(va_x)
-            score = log_loss(va_y, va_pred, eps=1e-15, normalize=True)
+            score = np.sqrt(mean_squared_error(va_y, va_pred))
 
             # モデル、インデックス、予測値、評価を返す
             return model, va_idx, va_pred, score
@@ -90,7 +106,7 @@ class Runner:
             scores.append(score)
             preds.append(va_pred)
 
-        # 各foldの結果をまとめる
+        # 各foldの結果（予測値、スコア）をまとめる
         va_idxes = np.concatenate(va_idxes)
         order = np.argsort(va_idxes)
         preds = np.concatenate(preds, axis=0)
@@ -99,7 +115,7 @@ class Runner:
         logger.info(f'{self.run_name} - end training cv - score {np.mean(scores)}')
 
         # 予測結果の保存
-        Util.dump(preds, f'../model/pred/{self.run_name}-train.pkl')
+        dump(preds, f'models/target/{self.run_name}-train.pkl')
 
         # 評価結果の保存
         logger.result_scores(self.run_name, scores)
@@ -128,7 +144,7 @@ class Runner:
         pred_avg = np.mean(preds, axis=0)
 
         # 予測結果の保存
-        Util.dump(pred_avg, f'../model/pred/{self.run_name}-test.pkl')
+        dump(pred_avg, f'models/target/{self.run_name}-test.pkl')
 
         logger.info(f'{self.run_name} - end prediction cv')
 
@@ -159,7 +175,7 @@ class Runner:
         pred = model.predict(test_x)
 
         # 予測結果の保存
-        Util.dump(pred, f'../model/pred/{self.run_name}-test.pkl')
+        dump(pred, f'models/target/{self.run_name}-test.pkl')
 
         logger.info(f'{self.run_name} - end prediction all')
 
@@ -178,28 +194,21 @@ class Runner:
 
         :return: 学習データの特徴量
         """
-        # 学習データの読込を行う
-        # 列名で抽出する以上のことを行う場合、このメソッドの修正が必要
-        # 毎回train.csvを読み込むのは効率が悪いため、データに応じて適宜対応するのが望ましい（他メソッドも同様）
-        return pd.read_csv('../input/train.csv')[self.features]
+        return self.loader.x_train
 
     def load_y_train(self) -> pd.Series:
         """学習データの目的変数を読み込む
 
         :return: 学習データの目的変数
         """
-        # 目的変数の読込を行う
-        train_y = pd.read_csv('../input/train.csv')['target']
-        train_y = np.array([int(st[-1]) for st in train_y]) - 1
-        train_y = pd.Series(train_y)
-        return train_y
+        return self.loader.y_train
 
     def load_x_test(self) -> pd.DataFrame:
         """テストデータの特徴量を読み込む
 
         :return: テストデータの特徴量
         """
-        return pd.read_csv('../input/test.csv')[self.features]
+        return self.loader.x_test
 
     def load_index_fold(self, i_fold: int) -> np.array:
         """クロスバリデーションでのfoldを指定して対応するレコードのインデックスを返す
@@ -211,5 +220,6 @@ class Runner:
         # ここでは乱数を固定して毎回作成しているが、ファイルに保存する方法もある
         train_y = self.load_y_train()
         dummy_x = np.zeros(len(train_y))
+        # make KFold
         skf = StratifiedKFold(n_splits=self.n_fold, shuffle=True, random_state=71)
         return list(skf.split(dummy_x, train_y))[i_fold]
