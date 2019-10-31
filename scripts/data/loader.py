@@ -5,6 +5,7 @@ from glob import glob
 
 import sys
 sys.path.append(".")
+from scripts.util import timer
 
 def get_filename(path: str) -> str:
     filename = splitext(basename(path))[0]
@@ -39,3 +40,24 @@ def load_datasets(feats: List[str], y_name: str) -> Tuple[pd.DataFrame, pd.DataF
             test[x.name] = x
 
     return train, test
+
+
+class DataLoader():
+    def __init__(self, feats, y_name):
+        with timer("loading data"):
+            self.train, self.test = load_datasets(feats, y_name)
+        self.feats = feats
+        self.y_name = y_name
+
+    @property
+    def x_train(self):
+        return self.train.drop(columns=self.y_name)
+
+    @property
+    def y_train(self):
+        return self.train[self.y_name]
+
+    @property
+    def x_test(self):
+        return self.test
+    
