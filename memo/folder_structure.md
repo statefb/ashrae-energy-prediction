@@ -1,6 +1,17 @@
 参考：https://upura.hatenablog.com/entry/2018/12/28/225234
 https://github.com/ghmagazine/kagglebook/tree/master/ch04-model-interface/code
 
+* configs, runs, submission, logsは合致させる。submissionsとlogsは自動ネーミング
+    - ex)
+    - configs/baseline.json
+    - configs/baseline.py
+    - configs/sub_(19-10-31-32)_(1.45).py
+    - configs/log_(19-10-31-32).log
+* config管理：
+    - どの特徴量？
+    - どのモデル？
+    - パラメータ？
+    - （どのバリデーション）？
 
 data
 	raw
@@ -16,8 +27,6 @@ configs
 	default.json
 
 features
-	base.py
-	create.py
 	familiy_size_train.feather
 
 src
