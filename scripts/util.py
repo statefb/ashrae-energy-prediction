@@ -25,6 +25,10 @@ def dump(cls, value, path):
 def load(cls, path):
     return joblib.load(path)
 
+def camel_to_snake(name):
+    s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
+    return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
+
 def reduce_mem_usage(df, verbose=True):
     """Reduce df size.
     

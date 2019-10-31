@@ -25,6 +25,7 @@ ipywidgets = "*"
 lightgbm = "*"
 kaggle = "*"
 feather-format = "*"
+coolprop = "*"
 
 [requires]
 python_version = "3.6"
