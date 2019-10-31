@@ -1,7 +1,6 @@
 from datetime import datetime
 import numpy as np
 import pandas as pd
-from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import StratifiedKFold
 from typing import Callable, List, Optional, Tuple, Union
 
@@ -11,6 +10,7 @@ sys.path.append(".")
 from .models.base import Model
 from .util import Logger, dump
 from .data.loader import DataLoader
+from .loss import get_loss_func
 
 logger = Logger()
 
@@ -19,7 +19,7 @@ class Runner:
     """Runner class.
     """
     def __init__(self, run_name: str, model_cls: Callable[[str, dict], Model],\
-        features: List[str], target: str, params: dict):
+        features: List[str], target: str, params: dict, loss: str):
         """コンストラクタ
 
         :param run_name: ランの名前
@@ -33,12 +33,14 @@ class Runner:
         self.features = features
         self.target = target
         self.params = params
+        self.loss = loss
+        self.loss_func = get_loss_func(self.loss)
         self.n_fold = 4
 
     @property
     def loader(self):
-        if hasattr(self, _loader):
-            return self._loader
+        if hasattr(self, "_loader"):
+            return self.__getattribute__("_loader")
         self._loader = DataLoader(self.features, self.target)
         return self._loader
 
@@ -68,7 +70,7 @@ class Runner:
 
             # バリデーションデータへの予測・評価を行う
             va_pred = model.predict(va_x)
-            score = np.sqrt(mean_squared_error(va_y, va_pred))
+            score = self.loss_func(va_y, va_pred)
 
             # モデル、インデックス、予測値、評価を返す
             return model, va_idx, va_pred, score

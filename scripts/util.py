@@ -20,7 +20,7 @@ def timer(name):
     print(f'[{name}] done in {time.time() - t0:.0f} s')
 
 def dump(value, path):
-    os.makedirs(os.path.dirname(path), exist_ok=True)
+    # os.makedirs(os.path.dirname(path), exist_ok=True)
     joblib.dump(value, path, compress=True)
     
 def load(path):
@@ -69,7 +69,7 @@ def reduce_mem_usage(df, verbose=True):
     if verbose: print('Mem. usage decreased to {:5.2f} Mb ({:.1f}% reduction)'.format(end_mem, 100 * (start_mem - end_mem) / start_mem))
     return df
 
-def create_submission(cls, run_name):
+def create_submission(run_name):
     pred_log = load(f"models/target/{run_name}-test.pkl")
     pred = np.expm1(pred_log)
     df_sub = pd.DataFrame(dict(
