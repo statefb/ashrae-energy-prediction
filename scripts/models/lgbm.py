@@ -13,6 +13,10 @@ from ..util import dump, load
 class ModelLGBM(Model):
     """light GBM model class.
     """
+    def __init__(self, run_fold_name: str, params: dict) -> None:
+        super().__init__(run_fold_name, params)
+        self.params["metric"] = set(params["metric"])
+
     def train(self, tr_x, tr_y, va_x=None, va_y=None):
 
         # データのセット

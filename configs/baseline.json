@@ -19,7 +19,7 @@
       "reg_alpha": 1,
       "reg_lambda": 1,
       "objective": "regression",
-      "metric": "rmse"
+      "metric": ["rmse"]
   },
   "loss": "rmse"
 }
