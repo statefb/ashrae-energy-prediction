@@ -2,13 +2,13 @@ import os
 
 import numpy as np
 import pandas as pd
-import xgboost as xgb
-
-from model import Model
-from util import Util
 
 
-class ModelXGB(Model):
+from .base import Model
+from ..util import dump, load
+
+
+class ModelLGBM(Model):
 
     def train(self, tr_x, tr_y, va_x=None, va_y=None):
 
