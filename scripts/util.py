@@ -10,7 +10,7 @@ import sys
 sys.path.append(".")
 import numpy as np
 import pandas as pd
-from sklearn.externals import joblib
+import joblib
 
 @contextmanager
 def timer(name):

@@ -2,6 +2,7 @@
 *.feather
 *.ftr
 *.pkl
+*.model
 Pipfile.lock
 
 MANIFEST

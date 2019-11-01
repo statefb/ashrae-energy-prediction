@@ -14,13 +14,17 @@ with timer("reading feather data"):
     weather_test = pd.read_feather(DATA_FEATHER + "weather_test.feather")
     building_metadata = pd.read_feather(DATA_FEATHER + "building_metadata.feather")
 
+# hold original number of samples
+n_train = train.shape[0]
+n_test = test.shape[0]
+
 print(train.head())
 
 with timer("merging"):
-    train = train.merge(building_metadata, left_on="building_id", right_on="building_id", how="left")
-    train = train.merge(weather_train, left_on=["site_id", "timestamp"], right_on=["site_id", "timestamp"])
-    test = test.merge(building_metadata, left_on="building_id", right_on="building_id", how="left")
-    test = test.merge(weather_test, left_on=["site_id", "timestamp"], right_on=["site_id", "timestamp"])
+    train = train.merge(building_metadata, on="building_id", how="left")
+    train = train.merge(weather_train, on=["site_id", "timestamp"], how="left")
+    test = test.merge(building_metadata, on="building_id", how="left")
+    test = test.merge(weather_test, on=["site_id", "timestamp"], how="left")
 
 print(train.head())
 
@@ -58,6 +62,10 @@ train["log_meter_reading"] = np.log1p(train["meter_reading"])
 with timer("reduce memory"):
     train = reduce_mem_usage(train)
     test = reduce_mem_usage(test)
+
+# check number of samples
+assert train.shape[0] == n_train
+assert test.shape[0] == n_test
 
 with timer("saving"):
     train.to_feather(DATA_FEATHER + "train.ftr")
