@@ -8,11 +8,9 @@ import sys
 sys.path.append(".")
 
 from .models.base import Model
-from .util import Logger, dump
+from .util import Logger, dump, timer, load
 from .data.loader import DataLoader
 from .loss import get_loss_func
-
-logger = Logger()
 
 
 class Runner:
@@ -35,6 +33,7 @@ class Runner:
         self.params = params
         self.loss = loss
         self.loss_func = get_loss_func(self.loss)
+        self.logger = Logger(self.run_name)
         self.n_fold = 4
 
     @property
@@ -87,7 +86,7 @@ class Runner:
 
         学習・評価とともに、各foldのモデルの保存、スコアのログ出力についても行う
         """
-        logger.info(f'{self.run_name} - start training cv')
+        self.logger.info(f'{self.run_name} - start training cv')
 
         scores = []
         va_idxes = []
@@ -96,9 +95,9 @@ class Runner:
         # 各foldで学習を行う
         for i_fold in range(self.n_fold):
             # 学習を行う
-            logger.info(f'{self.run_name} fold {i_fold} - start training')
+            self.logger.info(f'{self.run_name} fold {i_fold} - start training')
             model, va_idx, va_pred, score = self.train_fold(i_fold)
-            logger.info(f'{self.run_name} fold {i_fold} - end training - score {score}')
+            self.logger.info(f'{self.run_name} fold {i_fold} - end training - score {score}')
 
             # モデルを保存する
             model.save_model()
@@ -114,20 +113,20 @@ class Runner:
         preds = np.concatenate(preds, axis=0)
         preds = preds[order]
 
-        logger.info(f'{self.run_name} - end training cv - score {np.mean(scores)}')
+        self.logger.info(f'{self.run_name} - end training cv - score {np.mean(scores)}')
 
         # 予測結果の保存
         dump(preds, f'models/target/{self.run_name}-train.pkl')
 
         # 評価結果の保存
-        logger.result_scores(self.run_name, scores)
+        self.logger.result_scores(self.run_name, scores)
 
     def run_predict_cv(self) -> None:
         """クロスバリデーションで学習した各foldのモデルの平均により、テストデータの予測を行う
 
         あらかじめrun_train_cvを実行しておく必要がある
         """
-        logger.info(f'{self.run_name} - start prediction cv')
+        self.logger.info(f'{self.run_name} - start prediction cv')
 
         test_x = self.load_x_test()
 
@@ -135,12 +134,12 @@ class Runner:
 
         # 各foldのモデルで予測を行う
         for i_fold in range(self.n_fold):
-            logger.info(f'{self.run_name} - start prediction fold:{i_fold}')
+            self.logger.info(f'{self.run_name} - start prediction fold:{i_fold}')
             model = self.build_model(i_fold)
             model.load_model()
             pred = model.predict(test_x)
             preds.append(pred)
-            logger.info(f'{self.run_name} - end prediction fold:{i_fold}')
+            self.logger.info(f'{self.run_name} - end prediction fold:{i_fold}')
 
         # 予測の平均値を出力する
         pred_avg = np.mean(preds, axis=0)
@@ -148,25 +147,25 @@ class Runner:
         # 予測結果の保存
         dump(pred_avg, f'models/target/{self.run_name}-test.pkl')
 
-        logger.info(f'{self.run_name} - end prediction cv')
+        self.logger.info(f'{self.run_name} - end prediction cv')
 
     def run_train_all(self) -> None:
         """学習データすべてで学習し、そのモデルを保存する"""
-        logger.info(f'{self.run_name} - start training all')
+        self.logger.info(f'{self.run_name} - start training all')
 
         # 学習データ全てで学習を行う
         i_fold = 'all'
         model, _, _, _ = self.train_fold(i_fold)
         model.save_model()
 
-        logger.info(f'{self.run_name} - end training all')
+        self.logger.info(f'{self.run_name} - end training all')
 
     def run_predict_all(self) -> None:
         """学習データすべてで学習したモデルにより、テストデータの予測を行う
 
         あらかじめrun_train_allを実行しておく必要がある
         """
-        logger.info(f'{self.run_name} - start prediction all')
+        self.logger.info(f'{self.run_name} - start prediction all')
 
         test_x = self.load_x_test()
 
@@ -179,7 +178,7 @@ class Runner:
         # 予測結果の保存
         dump(pred, f'models/target/{self.run_name}-test.pkl')
 
-        logger.info(f'{self.run_name} - end prediction all')
+        self.logger.info(f'{self.run_name} - end prediction all')
 
     def build_model(self, i_fold: Union[int, str]) -> Model:
         """クロスバリデーションでのfoldを指定して、モデルの作成を行う
@@ -225,3 +224,15 @@ class Runner:
         # make KFold
         skf = KFold(n_splits=self.n_fold, shuffle=True, random_state=71)
         return list(skf.split(dummy_x, train_y))[i_fold]
+
+    def create_submission(self):
+        with timer("create submission"):
+            # NOTE: target variable is log-transformed
+            pred_log = load(f"models/target/{self.run_name}-test.pkl")
+            pred = np.expm1(pred_log)
+
+            df_sub = pd.DataFrame(dict(
+                row_id=range(len(pred)),
+                meter_reading=pred
+            ))
+            df_sub.to_csv(f"submission/sub_{self.run_name}.csv", index=False)

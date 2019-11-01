@@ -6,7 +6,6 @@ sys.path.append(".")
 
 from scripts.models import get_model_cls
 from scripts.runner import Runner
-from scripts.util import create_submission
 
 if __name__ == '__main__':
     CONFIG_FILE = "configs/baseline.json"
@@ -19,7 +18,7 @@ if __name__ == '__main__':
         config["features"], config["target"], config["hyper_params"], config["loss"])
     runner.run_train_cv()
     runner.run_predict_cv()
-    create_submission(RUN_NAME)
+    runner.create_submission()
 
     # # xgboostによる学習・予測
     # runner = Runner('xgb1', ModelXGB, features, params_xgb)
