@@ -21,22 +21,5 @@ if __name__ == '__main__':
     runner.run_predict_cv()
     runner.create_submission()
 
-    # # xgboostによる学習・予測
-    # runner = Runner('xgb1', ModelXGB, features, params_xgb)
-    # runner.run_train_cv()
-    # runner.run_predict_cv()
-    # Submission.create_submission('xgb1')
-
-    # # ニューラルネットによる学習・予測
-    # runner = Runner('nn1', ModelNN, features, params_nn)
-    # runner.run_train_cv()
-    # runner.run_predict_cv()
-    # Submission.create_submission('nn1')
-
-    '''
-    # (参考）xgboostによる学習・予測 - 学習データ全体を使う場合
-    runner = Runner('xgb1-train-all', ModelXGB, features, params_xgb_all)
-    runner.run_train_all()
-    runner.run_predict_all()
-    Submission.create_submission('xgb1-train-all')
-    '''
+    # runner.run_train_all()
+    # runner.run_predict_all()
