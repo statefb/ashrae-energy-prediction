@@ -35,8 +35,9 @@ class Feature(metaclass=ABCMeta):
         raise NotImplementedError
 
     def load(self):
-        self.train = pd.read_feather("data/processed/train.ftr")
-        self.test = pd.read_feather("data/processed/test.ftr")
+        with timer("load dataset"):
+            self.train = pd.read_feather("data/processed/train.ftr")
+            self.test = pd.read_feather("data/processed/test.ftr")
     
     def save(self, f_train: pd.Series, f_test: pd.Series):
         f_train.to_pickle(self.save_train_path)

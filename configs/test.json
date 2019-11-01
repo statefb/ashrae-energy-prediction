@@ -1,0 +1,25 @@
+{
+  "features": [
+      "meter",
+      "primary_use_label",
+      "square_feet",
+      "year_built",
+      "is_weekend",
+      "hour",
+      "month",
+      "enthalpy"
+  ],
+  "target": "log_meter_reading",
+  "model_name": "lgbm",
+  "hyper_params": {
+      "n_estimators": 6000,
+      "learning_rate": 0.05,
+      "boosting_type": "gbdt",
+      "feature_fraction": 0.7,
+      "subsample": 0.4,
+      "num_leaves": 40,
+      "objective": "regression",
+      "metric": ["rmse"]
+  },
+  "loss": "rmse"
+}

@@ -1,2 +1,20 @@
 [2019-11-01 10:18:37] - 19-11-01_10-18_(simple_lgbm) - start training cv
 [2019-11-01 10:18:37] - 19-11-01_10-18_(simple_lgbm) fold 0 - start training
+[2019-11-01 10:27:25] - 19-11-01_10-18_(simple_lgbm) fold 0 - end training - score 1.0136049145227524
+[2019-11-01 10:27:25] - 19-11-01_10-18_(simple_lgbm) fold 1 - start training
+[2019-11-01 10:35:44] - 19-11-01_10-18_(simple_lgbm) fold 1 - end training - score 1.018181817419752
+[2019-11-01 10:35:44] - 19-11-01_10-18_(simple_lgbm) fold 2 - start training
+[2019-11-01 10:44:48] - 19-11-01_10-18_(simple_lgbm) fold 2 - end training - score 1.013081387879659
+[2019-11-01 10:44:49] - 19-11-01_10-18_(simple_lgbm) fold 3 - start training
+[2019-11-01 10:54:05] - 19-11-01_10-18_(simple_lgbm) fold 3 - end training - score 1.0195078129668418
+[2019-11-01 10:54:07] - 19-11-01_10-18_(simple_lgbm) - end training cv - score 1.0160939831972513
+[2019-11-01 10:54:14] - 19-11-01_10-18_(simple_lgbm) - start prediction cv
+[2019-11-01 10:54:14] - 19-11-01_10-18_(simple_lgbm) - start prediction fold:0
+[2019-11-01 11:02:34] - 19-11-01_10-18_(simple_lgbm) - end prediction fold:0
+[2019-11-01 11:02:34] - 19-11-01_10-18_(simple_lgbm) - start prediction fold:1
+[2019-11-01 11:10:47] - 19-11-01_10-18_(simple_lgbm) - end prediction fold:1
+[2019-11-01 11:10:47] - 19-11-01_10-18_(simple_lgbm) - start prediction fold:2
+[2019-11-01 11:18:55] - 19-11-01_10-18_(simple_lgbm) - end prediction fold:2
+[2019-11-01 11:18:55] - 19-11-01_10-18_(simple_lgbm) - start prediction fold:3
+[2019-11-01 11:27:11] - 19-11-01_10-18_(simple_lgbm) - end prediction fold:3
+[2019-11-01 11:27:25] - 19-11-01_10-18_(simple_lgbm) - end prediction cv
