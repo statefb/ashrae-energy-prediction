@@ -1,3 +1,4 @@
+import gc
 from datetime import datetime
 import numpy as np
 import pandas as pd
@@ -140,6 +141,9 @@ class Runner:
             pred = model.predict(test_x)
             preds.append(pred)
             self.logger.info(f'{self.run_name} - end prediction fold:{i_fold}')
+
+            del model
+            gc.collect()
 
         # 予測の平均値を出力する
         pred_avg = np.mean(preds, axis=0)

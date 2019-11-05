@@ -1,0 +1,8 @@
+[2019-11-05 09:26:50] - 19-11-01_15-02_(enthalpy_comparison) - start prediction cv
+[2019-11-05 09:29:58] - 19-11-01_15-02_(enthalpy_comparison) - start prediction fold:0
+[2019-11-05 09:37:13] - 19-11-01_15-02_(enthalpy_comparison) - end prediction fold:0
+[2019-11-05 09:37:13] - 19-11-01_15-02_(enthalpy_comparison) - start prediction fold:1
+[2019-11-05 09:44:34] - 19-11-01_15-02_(enthalpy_comparison) - end prediction fold:1
+[2019-11-05 09:44:34] - 19-11-01_15-02_(enthalpy_comparison) - start prediction fold:2
+[2019-11-05 09:51:54] - 19-11-01_15-02_(enthalpy_comparison) - end prediction fold:2
+[2019-11-05 09:51:54] - 19-11-01_15-02_(enthalpy_comparison) - start prediction fold:3
