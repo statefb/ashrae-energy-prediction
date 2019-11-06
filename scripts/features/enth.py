@@ -104,7 +104,7 @@ class EnthalpyStd(Feature, DescriptionMixin):
         return self.train["enth_std"], self.test["enth_std"]
 
 if __name__ == "__main__":
-    # Enthalpy().run()
+    Enthalpy().run()
     EnthalpyMax().run()
     EnthalpyMin().run()
     EnthalpyMean().run()
