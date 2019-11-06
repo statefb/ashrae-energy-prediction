@@ -10,3 +10,11 @@
 [2019-11-06 14:13:50] - 19-11-06_13-37_(segmentation_with_month) - end training cv - score 0.796047884217847
 [2019-11-06 14:13:58] - 19-11-06_13-37_(segmentation_with_month) - start prediction cv
 [2019-11-06 14:13:58] - 19-11-06_13-37_(segmentation_with_month) - start prediction fold:0
+[2019-11-06 14:23:51] - 19-11-06_13-37_(segmentation_with_month) - end prediction fold:0
+[2019-11-06 14:23:51] - 19-11-06_13-37_(segmentation_with_month) - start prediction fold:1
+[2019-11-06 14:33:57] - 19-11-06_13-37_(segmentation_with_month) - end prediction fold:1
+[2019-11-06 14:33:57] - 19-11-06_13-37_(segmentation_with_month) - start prediction fold:2
+[2019-11-06 14:43:39] - 19-11-06_13-37_(segmentation_with_month) - end prediction fold:2
+[2019-11-06 14:43:39] - 19-11-06_13-37_(segmentation_with_month) - start prediction fold:3
+[2019-11-06 14:53:22] - 19-11-06_13-37_(segmentation_with_month) - end prediction fold:3
+[2019-11-06 14:53:36] - 19-11-06_13-37_(segmentation_with_month) - end prediction cv
