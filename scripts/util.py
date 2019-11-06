@@ -23,7 +23,10 @@ def send_line_notification(message):
     message = "\n{}".format(message)
     payload = {'message': message}
     headers = {'Authorization': 'Bearer {}'.format(line_token)}
-    requests.post(endpoint, data=payload, headers=headers)
+    try:
+        requests.post(endpoint, data=payload, headers=headers)
+    except:
+        return
 
 @contextmanager
 def timer(name):

@@ -129,11 +129,11 @@ class EnthalpyMinMinus1week(Feature, LagDescriptionMixin):
         return self.train["enth_min_m1w"], self.test["enth_min_m1w"]
 
 if __name__ == "__main__":
-    EnthalpyMaxPlus1day().run()
+    EnthalpyMaxPlus1day().run(enable_line_notification=True)
     EnthalpyMaxMinus1day().run()
     EnthalpyMaxPlus1week().run()
     EnthalpyMaxMinus1week().run()
     EnthalpyMinPlus1day().run()
     EnthalpyMinMinus1day().run()
     EnthalpyMinPlus1week().run()
-    EnthalpyMinMinus1week().run()
+    EnthalpyMinMinus1week().run(enable_line_notification=True)
