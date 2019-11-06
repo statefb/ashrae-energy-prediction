@@ -1,0 +1,12 @@
+[2019-11-06 13:37:35] - 19-11-06_13-37_(segmentation_with_month) - start training cv
+[2019-11-06 13:37:35] - 19-11-06_13-37_(segmentation_with_month) fold 0 - start training
+[2019-11-06 13:47:24] - 19-11-06_13-37_(segmentation_with_month) fold 0 - end training - score 0.7917286435871391
+[2019-11-06 13:47:24] - 19-11-06_13-37_(segmentation_with_month) fold 1 - start training
+[2019-11-06 13:56:09] - 19-11-06_13-37_(segmentation_with_month) fold 1 - end training - score 0.7953119406617548
+[2019-11-06 13:56:09] - 19-11-06_13-37_(segmentation_with_month) fold 2 - start training
+[2019-11-06 14:04:49] - 19-11-06_13-37_(segmentation_with_month) fold 2 - end training - score 0.7898486941542218
+[2019-11-06 14:04:50] - 19-11-06_13-37_(segmentation_with_month) fold 3 - start training
+[2019-11-06 14:13:48] - 19-11-06_13-37_(segmentation_with_month) fold 3 - end training - score 0.8073022584682721
+[2019-11-06 14:13:50] - 19-11-06_13-37_(segmentation_with_month) - end training cv - score 0.796047884217847
+[2019-11-06 14:13:58] - 19-11-06_13-37_(segmentation_with_month) - start prediction cv
+[2019-11-06 14:13:58] - 19-11-06_13-37_(segmentation_with_month) - start prediction fold:0

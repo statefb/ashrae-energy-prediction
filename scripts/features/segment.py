@@ -154,10 +154,10 @@ class Segment(Feature):
         train["segment"] = train["segment"].fillna(method="ffill")
         test["segment"] = test["segment"].fillna(method="ffill")
 
-        assert self.train.shape[0] == n_train, f"length must be the same. original:{n_train}, processed:{self.train.shape[0]}"
-        assert self.test.shape[0] == n_test, f"length must be the same. original:{n_test}, processed:{self.test.shape[0]}"
+        assert train.shape[0] == n_train, f"length must be the same. original:{n_train}, processed:{self.train.shape[0]}"
+        assert test.shape[0] == n_test, f"length must be the same. original:{n_test}, processed:{self.test.shape[0]}"
 
-        return self.train["segment"], self.test["segment"]
+        return train["segment"], test["segment"]
 
 
 if __name__ == "__main__":
