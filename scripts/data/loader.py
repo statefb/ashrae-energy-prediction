@@ -5,7 +5,7 @@ from glob import glob
 
 import sys
 sys.path.append(".")
-from scripts.util import timer
+from scripts.util import timer, reduce_mem_usage
 
 def get_filename(path: str) -> str:
     filename = splitext(basename(path))[0]
@@ -38,6 +38,9 @@ def load_datasets(feats: List[str], y_name: str) -> Tuple[pd.DataFrame, pd.DataF
             train[x.name] = x
         else:
             test[x.name] = x
+
+    train = reduce_mem_usage(train)
+    test = reduce_mem_usage(test)
 
     return train, test
 

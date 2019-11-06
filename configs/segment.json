@@ -1,0 +1,23 @@
+{
+  "features": [
+      "meter",
+      "primary_use_label",
+      "square_feet",
+      "is_weekend",
+      "hour",
+      "enthalpy_max",
+      "segment"
+  ],
+  "target": "log_meter_reading",
+  "model_name": "lgbm",
+  "hyper_params": {
+      "learning_rate": 0.5,
+      "boosting_type": "gbdt",
+      "feature_fraction": 0.8,
+      "bagging_fraction": 0.8,
+      "bagging_freq": 5,
+      "objective": "regression",
+      "metric": ["rmse"]
+  },
+  "loss": "rmse"
+}
