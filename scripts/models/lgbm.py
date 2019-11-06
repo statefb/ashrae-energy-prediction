@@ -27,7 +27,7 @@ class ModelLGBM(Model):
             lgb_valid = lgb.Dataset(va_x, va_y)
             self.model = lgb.train(self.params,
                 lgb_train,
-                num_boost_round=2000,
+                num_boost_round=20000,
                 valid_sets=(lgb_train, lgb_valid),
                 early_stopping_rounds=20,
                 verbose_eval=20
