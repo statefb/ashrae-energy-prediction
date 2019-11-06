@@ -4,6 +4,7 @@
 *.pkl
 *.model
 Pipfile.lock
+scripts/line.py
 
 MANIFEST
 build
