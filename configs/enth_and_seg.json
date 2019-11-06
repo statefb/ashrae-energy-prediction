@@ -8,6 +8,7 @@
       "month",
       "hour",
       "segment",
+      "segment_fine",
       "enthalpy_max",
       "enthalpy_max_minus1day",
       "enthalpy_max_minus1week",
