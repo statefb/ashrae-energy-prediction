@@ -11,6 +11,19 @@ sys.path.append(".")
 import numpy as np
 import pandas as pd
 import joblib
+import requests
+import json
+
+def send_line_notification(message):
+    # reference: https://amalog.hateblo.jp/entry/kaggle-snippets
+    with open("line_token.json") as f:
+        tmp = json.load(f)
+    line_token = tmp["token"]  # 終わったら無効化する
+    endpoint = 'https://notify-api.line.me/api/notify'
+    message = "\n{}".format(message)
+    payload = {'message': message}
+    headers = {'Authorization': 'Bearer {}'.format(line_token)}
+    requests.post(endpoint, data=payload, headers=headers)
 
 @contextmanager
 def timer(name):
