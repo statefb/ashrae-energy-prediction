@@ -5,7 +5,7 @@ from typing import Tuple
 
 import sys
 sys.path.append(".")
-from scripts.util import timer, camel_to_snake
+from scripts.util import timer, camel_to_snake, send_line_notification
 
 class Feature(metaclass=ABCMeta):
     """Feature base class.
@@ -23,12 +23,14 @@ class Feature(metaclass=ABCMeta):
         self.save_train_path = join("features/", f"{self.name}_train.pkl")
         self.save_test_path = join("features/", f"{self.name}_test.pkl")
     
-    def run(self):
+    def run(self, enable_line_notification=False):
         """Create and save the feature as feather format.
         """
         with timer(self.name):
             f_train, f_test = self.create_feature()
         self.save(f_train, f_test)
+        if enable_line_notification:
+            send_line_notification(f"created following feature: {self.name}")
         
     @abstractmethod
     def create_feature(self) -> Tuple[pd.Series, pd.Series]:

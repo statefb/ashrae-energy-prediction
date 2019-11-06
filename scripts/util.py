@@ -16,7 +16,7 @@ import json
 
 def send_line_notification(message):
     # reference: https://amalog.hateblo.jp/entry/kaggle-snippets
-    with open("line_token.json") as f:
+    with open("scripts/token.json") as f:
         tmp = json.load(f)
     line_token = tmp["token"]  # 終わったら無効化する
     endpoint = 'https://notify-api.line.me/api/notify'
@@ -102,11 +102,14 @@ class Logger:
             self.result_logger.setLevel(logging.INFO)
 
     def info(self, message):
-        # 時刻をつけてコンソールとログに出力
-        self.general_logger.info('[{}] - {}'.format(self.now_string(), message))
+        # 時刻をつけてコンソールとログ + lineに出力
+        msg = '[{}] - {}'.format(self.now_string(), message)
+        self.general_logger.info(msg)
+        send_line_notification(msg)
 
     def result(self, message):
         self.result_logger.info(message)
+        send_line_notification(message)
 
     def result_ltsv(self, dic):
         self.result(self.to_ltsv(dic))
