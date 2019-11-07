@@ -17,8 +17,8 @@ class IsHoliday(Feature):
         self.train["timestamp"] = pd.to_datetime(self.train["timestamp"], format="%Y-%m-%d %H:%M:%S")
         self.test["timestamp"] = pd.to_datetime(self.test["timestamp"], format="%Y-%m-%d %H:%M:%S")
 
-        tr_is_holiday = (self.train["timestamp"].isin(holidays)).astype(bool)
-        te_is_holiday = (self.test["timestamp"].isin(holidays)).astype(bool)
+        tr_is_holiday = (self.train["timestamp"].isin(holidays)).astype(bool).rename("is_holiday")
+        te_is_holiday = (self.test["timestamp"].isin(holidays)).astype(bool).rename("is_holiday")
 
         return tr_is_holiday, te_is_holiday
 

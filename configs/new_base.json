@@ -16,15 +16,7 @@
     "precip_depth_1_hr",
     "enthalpy",
     "enthalpy_max",
-    "enthalpy_min",
-    "enthalpy_max_p1d",
-    "enthalpy_max_p1w",
-    "enthalpy_max_m1d",
-    "enthalpy_max_m1w",
-    "enthalpy_min_p1d",
-    "enthalpy_min_p1w",
-    "enthalpy_min_m1d",
-    "enthalpy_min_m1w"
+    "enthalpy_min"
   ],
   "target": "log_meter_reading",
   "model_name": "lgbm",

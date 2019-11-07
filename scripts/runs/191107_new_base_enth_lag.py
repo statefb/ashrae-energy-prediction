@@ -8,8 +8,8 @@ from scripts.models import get_model_cls
 from scripts.runner import Runner
 
 if __name__ == '__main__':
-    CONFIG_FILE = "configs/new_base_seg.json"
-    RUN_NAME = "new_base_seg"
+    CONFIG_FILE = "configs/new_base_enth_lag.json"
+    RUN_NAME = "new_base_enth_lag"
 
     with open(CONFIG_FILE) as f:
         config = json.load(f)
