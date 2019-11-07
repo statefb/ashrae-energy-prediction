@@ -24,7 +24,8 @@
     "enthalpy_min_plus1day",
     "enthalpy_min_plus1week",
     "enthalpy_min_minus1day",
-    "enthalpy_min_minus1week"
+    "enthalpy_min_minus1week",
+    "segment"
   ],
   "target": "log_meter_reading",
   "model_name": "lgbm",
@@ -43,7 +44,8 @@
         "meter",
         "primary_use",
         "hour",
-        "dayofweek"
+        "dayofweek",
+        "segment"
       ]
   },
   "loss": "rmse"
