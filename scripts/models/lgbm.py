@@ -18,7 +18,7 @@ class ModelLGBM(Model):
         self.params["metric"] = set(params["metric"])
 
         categorical_features = params.get("categorical_features", None)
-        self.categorical_features = "" if categorical_features is None else categorical_features
+        self.categorical_features = "" if categorical_features is None else self.params.pop("categorical_features")
 
     def train(self, tr_x, tr_y, va_x=None, va_y=None):
 

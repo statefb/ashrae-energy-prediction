@@ -1,0 +1,12 @@
+[2019-11-07 17:29:24] - 19-11-07_17-29_(half_base) - start training cv
+[2019-11-07 17:29:24] - 19-11-07_17-29_(half_base) fold 0 - start training
+[2019-11-07 17:32:15] - 19-11-07_17-29_(half_base) fold 0 - end training - score 1.7214365389985755
+[2019-11-07 17:32:15] - 19-11-07_17-29_(half_base) fold 1 - start training
+[2019-11-07 17:35:04] - 19-11-07_17-29_(half_base) fold 1 - end training - score 2.529113046065028
+[2019-11-07 17:35:05] - 19-11-07_17-29_(half_base) - end training cv - score 2.1252747925318016
+[2019-11-07 17:35:06] - 19-11-07_17-29_(half_base) - start prediction cv
+[2019-11-07 17:35:06] - 19-11-07_17-29_(half_base) - start prediction fold:0
+[2019-11-07 17:35:47] - 19-11-07_17-29_(half_base) - end prediction fold:0
+[2019-11-07 17:35:47] - 19-11-07_17-29_(half_base) - start prediction fold:1
+[2019-11-07 17:36:38] - 19-11-07_17-29_(half_base) - end prediction fold:1
+[2019-11-07 17:36:42] - 19-11-07_17-29_(half_base) - end prediction cv

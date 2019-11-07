@@ -1,0 +1,6 @@
+[2019-11-07 17:52:20] - 19-11-07_17-52_(new_base) - start training cv
+[2019-11-07 17:52:20] - 19-11-07_17-52_(new_base) fold 0 - start training
+[2019-11-07 18:02:55] - 19-11-07_17-52_(new_base) fold 0 - end training - score 0.8908188504557558
+[2019-11-07 18:02:55] - 19-11-07_17-52_(new_base) fold 1 - start training
+[2019-11-07 18:12:38] - 19-11-07_17-52_(new_base) fold 1 - end training - score 1.0293156578855895
+[2019-11-07 18:12:38] - 19-11-07_17-52_(new_base) fold 2 - start training

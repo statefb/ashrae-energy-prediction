@@ -35,7 +35,7 @@ class Runner:
         self.loss = loss
         self.loss_func = get_loss_func(self.loss)
         self.logger = Logger(self.run_name)
-        self.n_fold = 2
+        self.n_fold = 4
 
     @property
     def loader(self):
@@ -225,11 +225,6 @@ class Runner:
         # ここでは乱数を固定して毎回作成しているが、ファイルに保存する方法もある
         train_y = self.load_y_train()
         dummy_x = np.zeros(len(train_y))
-
-        # make KFold
-        kf = GroupKFold(n_splits=self.n_fold)
-        meter = self.load_x_train()["meter"]
-        return list(kf.split(dummy_x, train_y, meter))[i_fold]
 
         # make KFold
         skf = KFold(n_splits=self.n_fold, shuffle=True, random_state=71)
