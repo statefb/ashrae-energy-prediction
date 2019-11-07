@@ -1,0 +1,12 @@
+[2019-11-07 16:56:02] - 19-11-07_16-56_(enth_and_seg(modify_params)) - start training cv
+[2019-11-07 16:56:02] - 19-11-07_16-56_(enth_and_seg(modify_params)) fold 0 - start training
+[2019-11-07 16:59:35] - 19-11-07_16-56_(enth_and_seg(modify_params)) fold 0 - end training - score 1.5951609849050146
+[2019-11-07 16:59:35] - 19-11-07_16-56_(enth_and_seg(modify_params)) fold 1 - start training
+[2019-11-07 17:02:32] - 19-11-07_16-56_(enth_and_seg(modify_params)) fold 1 - end training - score 2.5600824537154536
+[2019-11-07 17:02:33] - 19-11-07_16-56_(enth_and_seg(modify_params)) - end training cv - score 2.077621719310234
+[2019-11-07 17:02:35] - 19-11-07_16-56_(enth_and_seg(modify_params)) - start prediction cv
+[2019-11-07 17:02:35] - 19-11-07_16-56_(enth_and_seg(modify_params)) - start prediction fold:0
+[2019-11-07 17:04:09] - 19-11-07_16-56_(enth_and_seg(modify_params)) - end prediction fold:0
+[2019-11-07 17:04:10] - 19-11-07_16-56_(enth_and_seg(modify_params)) - start prediction fold:1
+[2019-11-07 17:05:10] - 19-11-07_16-56_(enth_and_seg(modify_params)) - end prediction fold:1
+[2019-11-07 17:05:13] - 19-11-07_16-56_(enth_and_seg(modify_params)) - end prediction cv

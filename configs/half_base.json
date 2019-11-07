@@ -1,0 +1,34 @@
+{
+  "features": [
+      "meter",
+      "primary_use_label",
+      "square_feet",
+      "dayofweek",
+      "hour"
+  ],
+  "target": "log_meter_reading",
+  "model_name": "lgbm",
+  "hyper_params": {
+      "learning_rate": 0.05,
+      "num_leaves": 40,
+      "min_data_in_leaf": 20,
+      "boosting_type": "gbdt",
+      "feature_fraction": 0.85,
+      "reg_lambda": 2,
+      "objective": "regression",
+      "metric": ["rmse"],
+      "categorical_features": [
+        "square_feet",
+        "meter",
+        "primary_use",
+        "hour",
+        "dayofweek",
+        "month",
+        "is_weekend",
+        "segment",
+        "segment_fine"
+      ]
+  },
+  "loss": "rmse"
+}
+

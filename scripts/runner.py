@@ -2,7 +2,7 @@ import gc
 from datetime import datetime
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import StratifiedKFold, KFold
+from sklearn.model_selection import StratifiedKFold, KFold, GroupKFold
 from typing import Callable, List, Optional, Tuple, Union
 
 import sys
@@ -35,7 +35,7 @@ class Runner:
         self.loss = loss
         self.loss_func = get_loss_func(self.loss)
         self.logger = Logger(self.run_name)
-        self.n_fold = 4
+        self.n_fold = 2
 
     @property
     def loader(self):
@@ -225,6 +225,12 @@ class Runner:
         # ここでは乱数を固定して毎回作成しているが、ファイルに保存する方法もある
         train_y = self.load_y_train()
         dummy_x = np.zeros(len(train_y))
+
+        # make KFold
+        kf = GroupKFold(n_splits=self.n_fold)
+        meter = self.load_x_train()["meter"]
+        return list(kf.split(dummy_x, train_y, meter))[i_fold]
+
         # make KFold
         skf = KFold(n_splits=self.n_fold, shuffle=True, random_state=71)
         return list(skf.split(dummy_x, train_y))[i_fold]
