@@ -117,4 +117,4 @@ class SegmentFine(Feature):
 
 
 if __name__ == "__main__":
-    SegmentFine().run()
+    SegmentFine().run(enable_line_notification=True)

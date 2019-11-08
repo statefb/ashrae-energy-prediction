@@ -17,26 +17,29 @@ class ModelLGBM(Model):
         super().__init__(run_fold_name, params)
         self.params["metric"] = set(params["metric"])
 
+        categorical_features = params.get("categorical_features", None)
+        self.categorical_features = "" if categorical_features is None else self.params.pop("categorical_features")
+
     def train(self, tr_x, tr_y, va_x=None, va_y=None):
 
         # データのセット
         validation = va_x is not None
-        lgb_train = lgb.Dataset(tr_x, label=tr_y)
+        lgb_train = lgb.Dataset(tr_x, label=tr_y, categorical_feature=self.categorical_features)
         
         if validation:
-            lgb_valid = lgb.Dataset(va_x, va_y)
+            lgb_valid = lgb.Dataset(va_x, va_y, categorical_feature=self.categorical_features)
             self.model = lgb.train(self.params,
                 lgb_train,
-                num_boost_round=20000,
+                num_boost_round=1000,
                 valid_sets=(lgb_train, lgb_valid),
-                early_stopping_rounds=20,
+                early_stopping_rounds=200,
                 verbose_eval=20
             )
         else:
             self.model = lgb.train(self.params,
                 lgb_train,
-                num_boost_round=2000,
-                early_stopping_rounds=20,
+                num_boost_round=1000,
+                early_stopping_rounds=200,
                 verbose_eval=20
             )
 

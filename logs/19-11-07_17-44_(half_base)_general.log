@@ -1,0 +1,4 @@
+[2019-11-07 17:44:31] - 19-11-07_17-44_(half_base) - start training cv
+[2019-11-07 17:44:31] - 19-11-07_17-44_(half_base) fold 0 - start training
+[2019-11-07 17:47:11] - 19-11-07_17-44_(half_base) fold 0 - end training - score 1.7214365389985755
+[2019-11-07 17:47:11] - 19-11-07_17-44_(half_base) fold 1 - start training

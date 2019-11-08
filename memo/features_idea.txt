@@ -13,6 +13,9 @@
 
 ■バリデーション
 lb probingで判明した、privateのデータの分布と同じ分布を持つものをvaridationに使用する
+meterの種別ごとにgroup k foldする
+k foldのk=2
+
 
 ■モデル
 ★ANNで試す＋stacking

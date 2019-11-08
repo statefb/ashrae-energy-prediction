@@ -1,0 +1,53 @@
+{
+  "features": [
+    "building_id",
+    "site_id",
+    "meter",
+    "primary_use_label",
+    "hour",
+    "dayofweek",
+    "is_holiday",
+    "square_feet",
+    "year_built",
+    "floor_count",
+    "air_temperature",
+    "cloud_coverage",
+    "dew_temperature",
+    "precip_depth_1_hr",
+    "enthalpy",
+    "enthalpy_max",
+    "enthalpy_min",
+    "enthalpy_max_plus1day",
+    "enthalpy_max_plus1week",
+    "enthalpy_max_minus1day",
+    "enthalpy_max_minus1week",
+    "enthalpy_min_plus1day",
+    "enthalpy_min_plus1week",
+    "enthalpy_min_minus1day",
+    "enthalpy_min_minus1week",
+    "segment"
+  ],
+  "target": "log_meter_reading",
+  "model_name": "lgbm",
+  "hyper_params": {
+      "learning_rate": 0.05,
+      "num_leaves": 40,
+      "min_data_in_leaf": 20,
+      "boosting_type": "gbdt",
+      "feature_fraction": 0.85,
+      "reg_lambda": 2,
+      "objective": "regression",
+      "metric": ["rmse"],
+      "categorical_features": [
+        "building_id",
+        "site_id",
+        "meter",
+        "primary_use",
+        "hour",
+        "dayofweek",
+        "segment"
+      ]
+  },
+  "loss": "rmse"
+}
+
