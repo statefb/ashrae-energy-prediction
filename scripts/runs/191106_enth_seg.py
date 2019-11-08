@@ -17,6 +17,6 @@ if __name__ == '__main__':
     runner = Runner(RUN_NAME, get_model_cls(config["model_name"]),\
         config["features"], config["target"], config["hyper_params"], config["loss"])
 
-    runner.run_train_cv()
-    runner.run_predict_cv()
+    # runner.run_train_cv()
+    # runner.run_predict_cv()
     runner.create_submission()
