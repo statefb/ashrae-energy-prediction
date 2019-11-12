@@ -1,0 +1,20 @@
+[2019-11-08 01:41:07] - 19-11-08_01-41_(new_base_enth_lag) - start training cv
+[2019-11-08 01:41:07] - 19-11-08_01-41_(new_base_enth_lag) fold 0 - start training
+[2019-11-08 02:13:07] - 19-11-08_01-41_(new_base_enth_lag) fold 0 - end training - score 0.8241861609353563
+[2019-11-08 02:13:08] - 19-11-08_01-41_(new_base_enth_lag) fold 1 - start training
+[2019-11-08 04:43:03] - 19-11-08_01-41_(new_base_enth_lag) fold 1 - end training - score 0.9963294195792602
+[2019-11-08 04:43:04] - 19-11-08_01-41_(new_base_enth_lag) fold 2 - start training
+[2019-11-08 07:14:08] - 19-11-08_01-41_(new_base_enth_lag) fold 2 - end training - score 0.9924071068272786
+[2019-11-08 07:14:09] - 19-11-08_01-41_(new_base_enth_lag) fold 3 - start training
+[2019-11-08 09:45:12] - 19-11-08_01-41_(new_base_enth_lag) fold 3 - end training - score 0.9902825571999754
+[2019-11-08 09:45:16] - 19-11-08_01-41_(new_base_enth_lag) - end training cv - score 0.9508013111354676
+[2019-11-08 09:45:25] - 19-11-08_01-41_(new_base_enth_lag) - start prediction cv
+[2019-11-08 09:45:25] - 19-11-08_01-41_(new_base_enth_lag) - start prediction fold:0
+[2019-11-08 09:49:37] - 19-11-08_01-41_(new_base_enth_lag) - end prediction fold:0
+[2019-11-08 09:49:38] - 19-11-08_01-41_(new_base_enth_lag) - start prediction fold:1
+[2019-11-08 09:52:59] - 19-11-08_01-41_(new_base_enth_lag) - end prediction fold:1
+[2019-11-08 09:53:00] - 19-11-08_01-41_(new_base_enth_lag) - start prediction fold:2
+[2019-11-08 09:56:25] - 19-11-08_01-41_(new_base_enth_lag) - end prediction fold:2
+[2019-11-08 09:56:25] - 19-11-08_01-41_(new_base_enth_lag) - start prediction fold:3
+[2019-11-08 09:59:58] - 19-11-08_01-41_(new_base_enth_lag) - end prediction fold:3
+[2019-11-08 10:00:17] - 19-11-08_01-41_(new_base_enth_lag) - end prediction cv
