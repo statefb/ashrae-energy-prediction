@@ -226,9 +226,14 @@ class Runner:
         train_y = self.load_y_train()
         dummy_x = np.zeros(len(train_y))
 
-        # make KFold
-        skf = KFold(n_splits=self.n_fold, shuffle=True, random_state=71)
-        return list(skf.split(dummy_x, train_y))[i_fold]
+        # # make KFold
+        # skf = KFold(n_splits=self.n_fold, shuffle=True, random_state=71)
+        # return list(skf.split(dummy_x, train_y))[i_fold]
+
+        # make stratified-KFold by building_id
+        train_x = self.load_x_train()
+        skf = StratifiedKFold(n_splits=self.n_fold, shuffle=True, random_state=71)
+        return list(skf.split(train_x, train_x["building_id"]))[i_fold]
 
     def create_submission(self):
         with timer("create submission"):
